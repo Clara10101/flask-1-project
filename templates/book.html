@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block title %}
+    Book
+{% endblock %}
+
+{% block body %}
+    <h1>Book Details</h1>
+
+    <ul>
+        <li>isbn: {{ book.isbn }}</li>
+        <li>Title: {{ book.title }}</li>
+        <li>Author: {{ book.author}}</li>
+        <li>Year: {{ book.year}}</li>
+    </ul>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.author }}</li>
+            <li>{{ comment.rating }}</li>
+            <li>{{ comment.content }}</li>
+        {% else %}
+            <li>No comments.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Goodreads</h2>
+    <ul>
+        <li>Average rating: {{ goodreads_average_rating }}</li>
+        <li>Number of ratings: {{ goodreads_rating_counts }}</li>
+    </ul>
+
+    <h2>Add comment</h2>
+    <form action="{{ url_for('comment', book_id=book_id) }}" method="POST">
+      <dl>
+        {{ render_field(form.rating) }}
+        <p>
+        {{ render_field(form.content) }}
+      </dl>
+      <p><input type=submit value=Add comment>
+    </form>
+
+{% endblock %}

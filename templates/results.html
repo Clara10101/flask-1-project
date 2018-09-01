@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+<div class="app-title">
+    <h1>Wynik wyszukania</h1>
+</div>
+
+    <ul>
+        {% for result in results %}
+            <li>
+                    Tytuł: {{ result.title }}, ISBN: {{ result.isbn }} - <a href="/book/{{ result.id }}">Szczegóły</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
